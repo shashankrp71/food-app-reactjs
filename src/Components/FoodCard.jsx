@@ -1,7 +1,10 @@
 import React from 'react'
 import FoodData from '../db.js'
 import ItemCard from '../Components/ItemCard'
+
 const FoodCard = () => {
+  
+  // Food menu
   return (
     <div className='flex flex-wrap gap-9 px-10 mt-4'>
       {

@@ -7,14 +7,13 @@ import FoodCard from '../Components/FoodCard'
 import Cart from '../Components/Cart'
 
 const Home = () => {
+  // Main Page
   return (
     <div className='w-full h-full bg-gray-100'>
       <Navbar></Navbar>
       <CategoryMenu></CategoryMenu>
       <FoodCard></FoodCard>
       <Cart></Cart>
-      {/* <Link to={"success"}>Success</Link>
-      <Outlet></Outlet> */}
     </div>
   )
 }

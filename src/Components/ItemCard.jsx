@@ -1,8 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { IoMdStar } from "react-icons/io";
-const ItemCard = ( data) => {
-  const {img,name,price,desc,category,rating} = data.data;
+import { useDispatch } from 'react-redux'
+import {addToCart} from '/src/redux/Slices/CartSlice.jsx'
+const ItemCard = (data) => {
+  // dispatcher from redux
+  const dispatcher = useDispatch()
+  const {id,img,name,price,desc,category,rating} = data.data;
   return (
     <div >
         <div className='h-[300px] w-[250px] rounded-lg shadow-xl p-3 flex flex-col items-center gap-2 ' >
@@ -16,7 +20,9 @@ const ItemCard = ( data) => {
             <p className='overflow-y-hidden px-3'>{desc}</p>
             <div className='flex justify-between w-full px-3'>
               <h1 className='font-bold flex items-center' >{rating}<span><IoMdStar color='gold'/></span></h1>
-            <button className='px-2 py-1 bg-green-400  rounded-md text-white font-bold' > Add cart</button>
+            <button className='px-2 py-1 bg-green-400  rounded-md text-white font-bold' onClick={()=>{
+              dispatcher(addToCart({id,name,price,rating,qty:1,img}))
+            }}> Add cart</button>
             </div>
         </div>
     </div>
