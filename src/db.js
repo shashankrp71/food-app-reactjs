@@ -52,6 +52,7 @@ const FoodData = [
       desc: "Start your day with a stack of fluffy pancakes served with maple syrup and a dollop of butter. A timeless breakfast favorite that's sure to satisfy your morning cravings.",
       category: "Breakfast",
       rating: 4.5,
+    
     },
     {
       id: 7,

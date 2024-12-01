@@ -7,10 +7,15 @@ const Cart = () => {
   const cartItems = useSelector((state)=>state.cart.cart);
  
   const [activeCart,setActiveCart] = useState(false);
-  
+  // handle the cart icon make it animate
+  const [bounceCart,setBounceCart] = useState("none");
   const handleCart = ()=>{
     setActiveCart(!activeCart)
+    
   }
+  
+  const totalQty = cartItems.reduce((totalQty,item)=>totalQty+item.qty,0);
+  const totalAmount = cartItems.reduce((totalAmount,item)=>totalAmount+(item.qty*item.price),0);
   return (
     <>
        {/* top */}
@@ -21,20 +26,23 @@ const Cart = () => {
         </div>
 
         {
-          cartItems.map((data)=>{
+          cartItems.length > 0 ?cartItems.map((data)=>{
               return <CartItemCard data={data} key={data.id}></CartItemCard>
-          })
+          }) : <h2 className='font-semibold'>Your cart is empty!</h2>
+          
+
         }
         {/* bottom */}
         <div className='absolute bottom-7'>
-            <h3>Items : </h3>
-            <h3>Total Amount : </h3>
+            <h3>Items : {totalQty}</h3>
+            <h3>Total Amount : {totalAmount}</h3>
             <hr className='w-[90vw] lg:w-[18vw] my-2'/>
             <button className='px-3 py-2 bg-green-500 rounded-lg font-bold text-white hover:bg-green-600 w-[90vw] lg:w-[18vw]' >Checkout</button>
         </div>
         
       </div>
-      <FaShoppingCart className='text-5xl p-3 bg-gray-800 rounded-2xl text-white fixed bottom-6 right-6 shadow-xl z-0' onClick={handleCart}/>
+      
+      <FaShoppingCart className={`text-5xl p-3 bg-gray-800 rounded-2xl text-white fixed bottom-6 right-6 shadow-xl z-0 animate-${bounceCart}`} onClick={handleCart}/>
     </>
   )
 }
